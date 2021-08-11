@@ -1,0 +1,11 @@
+chen-nbdomain-login:
+
+    forum:
+        log_in: NBDomain Login
+        tip_text: Tips
+        give_a_tip: Give 
+        tip_title: Send a tip
+        tip_thanks: Thank you for your tips
+        tip_cancel: You have cancel send a tip
+        tip_list: Show tip list
+        no_tips: No tips found
