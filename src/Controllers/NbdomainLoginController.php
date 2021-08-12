@@ -95,7 +95,7 @@ class NbdomainLoginController implements RequestHandlerInterface
 				else $nickname = $pair[0].$pair[1];
 			}
 			$user = array('username' => $nickname, 'email' => 'flarum@'.$nbdomainname);  
-			$existuser = LoginProvider::logIn('nbdomainlogin', str_replace('.','',$nbdomainname));
+			$existuser = LoginProvider::logIn('nbdomainlogin', $nickname);
 			$dirty = false;
 			if (!$existuser) {
 				$existuser = User::register($nickname, 'flarum@'.$nbdomainname, '$2y$10$L6u9FX8zwy5d.1BL8vopK.ya7iKQvR./KIZ2LY6tnWBtvr6ROkMvW');
