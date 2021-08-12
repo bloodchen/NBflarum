@@ -90,7 +90,9 @@ class NbdomainLoginController implements RequestHandlerInterface
 			}
 			if ($hash <> '') $nickname = $hash; 
 			else {
-				$nickname = explode(".",$nbdomainname)[1];
+				$pair = explode(".",$nbdomainname);
+				if($pair[1]=="b") $nickname = $pair[0];
+				else $nickname = $pair[0].$pair[1];
 			}
 			$user = array('username' => $nickname, 'email' => 'flarum@'.$nbdomainname);  
 			$existuser = LoginProvider::logIn('nbdomainlogin', str_replace('.','',$nbdomainname));
