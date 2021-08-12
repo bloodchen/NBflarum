@@ -74,7 +74,7 @@ class NbdomainLoginController implements RequestHandlerInterface
 			$avatarurl = '';
 			$json = json_decode($c);
 			mlog($c);
-			if ($json && $json->code == 0) {
+			if ($json && $json->code == 0 && $json->obj->avatar) {
 				mlog("22");
 				$obj = $json->obj;
 				$data = explode(',', $obj->avatar);
@@ -89,7 +89,9 @@ class NbdomainLoginController implements RequestHandlerInterface
 				}
 			}
 			if ($hash <> '') $nickname = $hash; 
-			else $nickname = str_replace('.','',$nbdomainname);
+			else {
+				$nickname = explode(".",$nbdomainname)[1];
+			}
 			$user = array('username' => $nickname, 'email' => 'flarum@'.$nbdomainname);  
 			$existuser = LoginProvider::logIn('nbdomainlogin', str_replace('.','',$nbdomainname));
 			$dirty = false;
