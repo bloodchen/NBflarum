@@ -100,7 +100,7 @@ class NbdomainLoginController implements RequestHandlerInterface
 				if ($avatarurl != '') {
 					$existuser->changeAvatarPath($avatarurl);
 				}
-				$dirty = true;	
+				$existuser->save();	
 			} else {
 				
 			}
