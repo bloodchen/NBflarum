@@ -23,15 +23,12 @@
   },
   "extra": {
     "flarum-extension": {
-      "title": "NBDomain for flarum",
+      "title": "NBflarum",
       "icon": {
-        "name": "NBflarum",
-        "backgroundColor": "",
-        "color": ""
+        "name": "fa-solid fa-n",
+        "backgroundColor": "#fff",
+        "color": "#00DD00"
       }
-    },
-    "flagrow": {
-      "discuss": ""
     }
   }
 }

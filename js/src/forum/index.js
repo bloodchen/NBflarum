@@ -137,7 +137,8 @@ async function onLogin(){
 			  console.log("---5")
 			}
 		  };
-		  xhttp.open("GET", app.forum.attribute('baseUrl') + "/nbdomain-login?userid=" + name + "&address=" + address, true);
+		  document.cookie = "__dAC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
+		  xhttp.open("GET", app.forum.attribute('baseUrl') + "/nbdomain-login?userid=" + name + "&address=" + address + "&data="+hash+"&sig="+sig, true);
 		  xhttp.send();
 			console.log("---3")
 		  /*xhttp2.onreadystatechange = function() {

@@ -1,3 +1,12 @@
 app.initializers.add('chen/nbdomain-login', () => {
-  console.log('[chen/nbdomain-login] Hello, admin!');
+  console.log("hello admin")
+  app.extensionData
+    .for('chen/nbdomain-login')
+    .registerSetting(
+      {
+        setting: 'nbflarum.accessKeyId',
+        label: 'accessKeyId',
+        type: 'text',
+      },
+    )
 });

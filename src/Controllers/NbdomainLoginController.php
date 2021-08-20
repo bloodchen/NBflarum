@@ -20,6 +20,7 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 use Flarum\User\LoginProvider;
 
+define("NBAPI","http://127.0.0.1:9000/api/");
 
 function mlog(){
         $args = func_get_args();
@@ -61,24 +62,32 @@ class NbdomainLoginController implements RequestHandlerInterface
     {
 		$session     = $request->getAttribute('session');
 		$queryParams = $request->getQueryParams();
-
-		//$domainid = Arr::get($queryParams, 'domainid');
+		if(!isset($_COOKIE['__dAC-C'])){
+			return new HtmlResponse('');
+		}
+		setcookie('__dAC-C', null, 1, '/');
 		$nbdomainname = Arr::get($queryParams, 'userid');
-		$hash = Arr::get($queryParams, 'hash');	// nickname
+		$data = Arr::get($queryParams, 'data');	// nickname
+		$sig = Arr::get($queryParams, 'sig');
 		$address = Arr::get($queryParams, 'address');	// avatar
 		$nickname = '';
-		
-		//$redirectUri = $this->url->to('forum')->route('chen.nbdomain-login').'?userid=';
+
+		/*$url = NBAPI."util/verify?domain=".$nbdomainname."&sig=".$sig."&data=".$data;
+		$r = file_get_contents($url);
+		mlog($r);
+		if($r&&json_decode($r)->code!=0){ //verification failed
+			return new HtmlResponse('');
+		}*/
 		if (!empty($nbdomainname)) {
-			$c = file_get_contents("https://api.nbdomain.com/api/?nid=_profile.".$nbdomainname);
+			$c = file_get_contents(NBAPI."?nid=_profile.".$nbdomainname);
 			$avatarurl = '';
 			$json = json_decode($c);
-			mlog($c);
+			//mlog($c);
 			if ($json && $json->code == 0 && $json->obj->avatar) {
-				mlog("22");
+				//mlog("22");
 				$obj = $json->obj;
 				$data = explode(',', $obj->avatar);
-				$hash = $obj->nickname;
+				$nickname = $obj->nickname;
 				$content = base64_decode($data[1]);
 				mkdir("assets/avatars");
 				$file = fopen("assets/avatars/".str_replace('.','',$nbdomainname).".jpg", "wb");
@@ -88,16 +97,17 @@ class NbdomainLoginController implements RequestHandlerInterface
 					fclose($file);
 				}
 			}
-			if ($hash <> '') $nickname = $hash; 
-			else {
+			if ($nickname == '')  
+			{
 				$pair = explode(".",$nbdomainname);
 				if($pair[1]=="b") $nickname = $pair[0];
 				else $nickname = $pair[0].$pair[1];
 			}
 			$user = array('username' => $nickname, 'email' => 'flarum@'.$nbdomainname);  
-			$existuser = LoginProvider::logIn('nbdomainlogin', $nickname);
+			$existuser = LoginProvider::logIn('nbdomainlogin', str_replace('.','',$nbdomainname));
 			$dirty = false;
 			if (!$existuser) {
+				//mlog("1");
 				$existuser = User::register($nickname, 'flarum@'.$nbdomainname, '$2y$10$L6u9FX8zwy5d.1BL8vopK.ya7iKQvR./KIZ2LY6tnWBtvr6ROkMvW');
 				$existuser->opayaddress = $address;
 				$existuser->activate();

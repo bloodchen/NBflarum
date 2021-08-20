@@ -40,10 +40,7 @@ export default class addTipModal extends Modal {
   }//
 
   async onready() {
-	  console.log(this.div_tip_id['dom']['innerHTML']);
-	  //console.log(this.address + ' ' + this.tips_amount + ' user_id = ' + this.user_id + ' post_id = ' + this.post.data.id);
-	  //opay.init({ containerID: "pay"});
-	  //document.getElementById("div_tip"+this.userid).outerHTML = 'Thank you for your tips';
+	  //console.log(this.div_tip_id['dom']['innerHTML']);
 	  await opay.init({debug: true,app:{name:"NBforum"} });
 	  opay.changeContainer("pay");
 	  opay.setUI({close:false});	  
@@ -63,37 +60,14 @@ export default class addTipModal extends Modal {
           if (result.code == 0) {
             const res = "Success, url=tx://" + result.txhash;
             console.log(res);
-			this.div_tip_id['dom']['innerHTML'] = app.translator.trans('chen-nbdomain-login.forum.tip_thanks');
-			app.modal.close();
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-				  //window.location.reload();
-				}
-			};
-			xhttp.open("GET", app.forum.attribute('baseUrl') + "/nbdomaintips?user_id=" + this.user_id + "&post_id=" + this.post.data.id + "&sender_id=" + this.sender_id + "&tips_amount=" + this.tips_amount + "&trx=" + result.txhash, true);
-			xhttp.send();
-
-			/*const ndata = this.objtips;
-			console.log(ndata);
-			return this.post
-				.save({ ndata })
-				.then((post) => {
-					m.redraw();
-				})
-				.catch((err) => {
-
-					$('body').append(err);
-
-					m.redraw();
-				});			
-			*/
-            //document.querySelector("#status").innerText = res;
-          } else {
-			//this.div_tip_id['dom']['innerHTML'] = app.translator.trans('chen-nbdomain-login.forum.tip_cancel');
-			app.modal.close();
-			alert(app.translator.trans('chen-nbdomain-login.forum.tip_cancel'));
-		  }
+						this.div_tip_id['dom']['innerHTML'] = app.translator.trans('chen-nbdomain-login.forum.tip_thanks');
+						app.modal.close();
+						const url =  app.forum.attribute('baseUrl') + "/nbdomaintips?user_id=" + this.user_id + "&post_id=" + this.post.data.id + "&sender_id=" + this.sender_id + "&tips_amount=" + this.tips_amount + "&trx=" + result.txhash;
+						fetch(url);
+			    } else {
+						app.modal.close();
+						alert(app.translator.trans('chen-nbdomain-login.forum.tip_cancel'));
+		  		}
         });
 	  
   }

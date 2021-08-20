@@ -42,9 +42,7 @@ return [
         ->content(function (Document $document) {
             $document->foot[] = '
 <div id="awalpay" style="width:250px;height:200px;"></div>			
-<script>			
-	//opay.init({ containerID: "awalpay",timeout:50,debug:true });
-	//opay.setUI({close:false});	  
+<script>				  
 	nblib.init({
 	  debug:true,
 	  opay:opay,
