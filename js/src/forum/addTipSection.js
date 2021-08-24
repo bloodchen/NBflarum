@@ -19,7 +19,7 @@ async function getUsername(userId){
 }
 export default function() {
 		
-	extend(CommentPost.prototype, 'footerItems', async function(items) {		
+	extend(CommentPost.prototype, 'footerItems', function(items) {		
 		const post = this.attrs.post;
 		const user = post.user();
 		var curruser = app.session.user;

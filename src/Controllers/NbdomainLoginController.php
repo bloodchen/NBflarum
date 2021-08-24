@@ -108,7 +108,7 @@ class NbdomainLoginController implements RequestHandlerInterface
 			$dirty = false;
 			if (!$existuser) {
 				//mlog("1");
-				$existuser = User::register($nickname, 'flarum@'.$nbdomainname, '$2y$10$L6u9FX8zwy5d.1BL8vopK.ya7iKQvR./KIZ2LY6tnWBtvr6ROkMvW');
+				$existuser = User::register($nickname, 'flarum@'.$nbdomainname, '12345678poi');
 				$existuser->opayaddress = $address;
 				$existuser->activate();
 				if ($avatarurl != '') {

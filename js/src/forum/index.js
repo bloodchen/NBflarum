@@ -10,7 +10,7 @@ import Model from 'flarum/Model';
 import User from "flarum/models/User";
 //import addTipModal from './addTipModal';
 import addTipSection from './addTipSection';
-
+import changeEmailModal from './changeEmailModal'
 
 
 app.initializers.add('chen-nbdomain-login', () => {
@@ -18,7 +18,7 @@ app.initializers.add('chen-nbdomain-login', () => {
 	Post.prototype.nbdomaintips = Model.hasMany('nbdomaintips');
 	
 	addTipSection();
-	
+	changeEmailModal();
     extend(HeaderSecondary.prototype, 'items', replaceSignupButton);	
 	extend(LogInModal.prototype.onsubmit = function(e) { 
 		e.preventDefault(); 
@@ -57,7 +57,7 @@ app.initializers.add('chen-nbdomain-login', () => {
 			  className="FormControl"
 			  name="identification"
 			  type="text"
-			  placeholder="NBDomain1"
+			  placeholder="NBDomain"
 			  bidi={this.identification}
 			  disabled={this.loading}
 			/>
@@ -124,29 +124,19 @@ async function onLogin(){
 		  if(obj.usedWallet)opay.setWallet(obj.usedWallet);
 			
 		  var xhttp = new XMLHttpRequest();
-		  var xhttp2 = new XMLHttpRequest();
 		  console.log("---1")
 		  xhttp.onreadystatechange = function() {
 		  	console.log("---2")
 			if (this.readyState == 4 && this.status == 200) {
 				console.log("---4")
 				window.location.reload();
-			//  xhttp2.open("GET", app.forum.attribute('baseUrl') + "/nbdomain-login?userid=" + name, true);
-			//  xhttp2.send();
-			  
 			  console.log("---5")
 			}
 		  };
 		  document.cookie = "__dAC-C=ac-c;expires=Fri, 31 Dec 9999 23:59:59 GMT;path=/;SameSite=Lax";
 		  xhttp.open("GET", app.forum.attribute('baseUrl') + "/nbdomain-login?userid=" + name + "&address=" + address + "&data="+hash+"&sig="+sig, true);
 		  xhttp.send();
-			console.log("---3")
-		  /*xhttp2.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-			  window.location.reload();
-			}
-		  };*/
-		  
+		  console.log("---3")	  
 		} else {
 			console.log('no nbdomain ' + obj.code);
 			this.loading = false;
