@@ -1,5 +1,4 @@
 chen-nbdomain-login:
-
     forum:
         log_in: NBDomain Login
         tip_text: Tips
@@ -9,3 +8,4 @@ chen-nbdomain-login:
         tip_cancel: You have cancel send a tip
         tip_list: Show tip list
         no_tips: No tips found
+        email_reminder: Please update your email

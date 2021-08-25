@@ -52,6 +52,8 @@ export default function() {
         	}
         	if(elList)
         		elList.innerHTML = htmlCode
+        	//check email
+        	console.log(curruser.data.attributes.email)
         },500);
 		
 		

@@ -1,0 +1,9 @@
+chen-nbdomain-login:
+    forum:
+        log_in: NBDomain 登陆
+        tip_text: 打赏
+        give_a_tip: 打赏
+        tip_thanks: 谢谢您的支持
+        tip_cancel: 您取消了打赏
+        email_reminder: 请更新邮箱设定
+        
