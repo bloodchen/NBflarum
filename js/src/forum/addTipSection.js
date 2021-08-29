@@ -30,6 +30,7 @@ export default function() {
 		} else {
 			vcurruser = curruser.data.id;
 		}
+		console.log('curuer:',curruser)
 		console.log('user_id ' + vcurruser);
 		//console.log(user);
 		console.log(user['data']['attributes']['opayaddress']);
@@ -52,8 +53,7 @@ export default function() {
         	}
         	if(elList)
         		elList.innerHTML = htmlCode
-        	//check email
-        	console.log(curruser.data.attributes.email)
+        	
         },500);
 		
 		
