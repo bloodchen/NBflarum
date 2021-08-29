@@ -33,6 +33,8 @@ export default function() {
 		},1000)*/
 		console.log(vnode)
 		
+		if(!app.session.user) return
+			
 		const email = app.session.user.data.attributes.email
 		console.log("showModule:",email.slice(0,7))
 		if(email.slice(0,7)==='flarum@'){
