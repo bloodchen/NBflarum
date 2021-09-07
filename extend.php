@@ -32,7 +32,7 @@ use Chen\NbdomainLogin\Controllers\ListPostNbdomaintipsController;*/
 return [
     (new Extend\Frontend('forum'))
         ->content(function (Document $document) {
-            $document->head[] = '<script src="https://unpkg.com/opay@1.0.93/opay.min.js"></script>
+            $document->head[] = '<script src="https://unpkg.com/opay2@1.0.7/opay2.min.js"></script>
 								 <script src="https://unpkg.com/nblib@latest/nblib.min.js" ></script>
 								 <style>td, th { padding: 1px; }</style>
 								 ';
@@ -45,7 +45,6 @@ return [
 <script>				  
 	nblib.init({
 	  debug:true,
-	  opay:opay,
 	  enable_write:false
 	});
 </script>

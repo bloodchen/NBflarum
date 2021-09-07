@@ -7,6 +7,7 @@ import Stream from 'flarum/common/utils/Stream';
 export default class addTipModal extends Modal {
   oninit(vnode) {
     super.oninit(vnode);
+    console.log(vnode)
 	this.post = this.attrs.post;
 	this.user_id = this.attrs.user_id;
 	this.sender_id = this.attrs.sender_id;
@@ -18,6 +19,7 @@ export default class addTipModal extends Modal {
 		'user_id': this.user_id,
 		'tips_amount': this.tips_amount
 	};
+  this.opay = new Opay2
 
   }
 
@@ -28,12 +30,15 @@ export default class addTipModal extends Modal {
   title() {
     return app.translator.trans(`chen-nbdomain-login.forum.tip_title`);
   }
-  
+  hide(){
+    super.hide()
+    this.opay.close()
+  }
   content() {
     return (
       <div className="Modal-body">
           <div className="Form Form--centered">
-		    <div id="pay" style="width:100% !important; height:220px; align: center;"></div>
+		    <div id="pay" style="width:100% !important; height:100%; align: center;"></div>
           </div>
       </div>
     );
@@ -41,9 +46,9 @@ export default class addTipModal extends Modal {
 
   async onready() {
 	  //console.log(this.div_tip_id['dom']['innerHTML']);
-	  await opay.init({debug: true,app:{name:"NBforum"} });
-	  opay.changeContainer("pay");
-	  opay.setUI({close:false});	  
+	  await this.opay.init({debug: true,containerID:'pay',app:{name:"NBforum"} });
+	  
+	  this.opay.setUI({close:false});	  
         let reqBody = {
           to: [{ address: this.address, value: this.tips_amount*100 }],
           expire: Date.now() + 120 * 1000,
@@ -54,7 +59,7 @@ export default class addTipModal extends Modal {
             data: reqBody
           }
         };
-        opay.request(req, e => {
+        this.opay.request(req, e => {
           let result = e;
           console.log(result);
           if (result.code == 0) {

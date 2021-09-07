@@ -66,7 +66,7 @@ app.initializers.add('chen-nbdomain-login', () => {
 		); //
 		fields.add(
 		  'submitku',
-		  <div id="elPay" style = "width:100%; height:0px;">
+		  <div id="elPay" style = "width:100%; height:300px;display:none;">
 		  </div>,
 		  -10
 		);
@@ -87,23 +87,30 @@ app.initializers.add('chen-nbdomain-login', () => {
 		};
 		delete footer[0]['children'][0]; //delete footer[1];				
 	});	
+	extend(LogInModal.prototype, 'hide', function () {
+		console.log('LogInModal.hide opay:',opay)
+		opay&&opay.close();
+	});
 });
-
+let opay = null;
 async function onLogin(){
 	console.log("---login start");
-	await opay.init({debug: true,app:{name:"NBforum"} });
-	opay.changeContainer("elPay");
-	opay.setUI({close:false});	  
+	  
 	const data_sign="hello";
 	const name = this.fields()['items']['identification']['content']['children'][0]['attrs']['value'];
-	const hash = opay.sha256(data_sign);
 	const domain = await nblib.getDomain(name);
-	console.log("---domain")
+	
 	if(domain) {
-	  const pubKey = domain.info.owner_key;
-	  const address = domain.info.owner;
-		document.getElementById("elPay").style["min-height"] = "300px;";
-        document.getElementById("elPay").style["padding-top"] = "300px";
+       
+		opay = new Opay2
+		await opay.init({debug: true,app:{name:"NBforum"},containerID:'elPay' });
+		console.log("---opay init finish")
+		opay.setUI({close:false});	
+		document.getElementById("elPay").style.display = "block";
+		const hash = opay.sha256(data_sign);
+	  	const pubKey = domain.info.owner_key;
+	  	const address = domain.info.owner;
+
 		m.redraw();
 	  const reqBody = {
 		signer:address,

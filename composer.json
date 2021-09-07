@@ -25,7 +25,7 @@
     "flarum-extension": {
       "title": "NBflarum",
       "icon": {
-        "name": "fa-solid fa-n",
+        "name": "fas fa-snowman",
         "backgroundColor": "#fff",
         "color": "#00DD00"
       }
