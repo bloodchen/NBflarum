@@ -20,7 +20,7 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 use Flarum\User\LoginProvider;
 
-define("NBAPI","http://127.0.0.1:9000/api/");
+define("NBAPI","https://api.nbdomain.com/api/");
 
 function mlog(){
         $args = func_get_args();
