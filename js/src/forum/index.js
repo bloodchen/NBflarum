@@ -13,7 +13,7 @@ import addTipSection from './addTipSection';
 import changeEmailModal from './changeEmailModal'
 
 
-app.initializers.add('chen-nbdomain-login', () => {
+app.initializers.add('jeffchen-nbflarum', () => {
     //Post.prototype.canLike = Model.attribute('canLike');
 	Post.prototype.nbdomaintips = Model.hasMany('nbdomaintips');
 	

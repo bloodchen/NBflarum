@@ -32,6 +32,9 @@ export default function() {
 		}
 		console.log('curuer:',curruser)
 		console.log('user_id ' + vcurruser);
+		
+		let minTip = app.forum.attribute("nbflarum-minTip")
+		if(!minTip)minTip = 2
 		//console.log(user);
 		console.log(user['data']['attributes']['opayaddress']);
 		const tiplist = "tiplist" + post.data.id; 
@@ -82,7 +85,7 @@ export default function() {
 				  },
 				  app.translator.trans(`chen-nbdomain-login.forum.tip_text`)
 				
-				)}&nbsp;<input type="number" id={tip_text_id} style={tip_text_style} min="2" value="2" />
+				)}&nbsp;<input type="number" id={tip_text_id} style={tip_text_style} min={minTip} value={minTip} />
 			</div>
 		  ));
 		}

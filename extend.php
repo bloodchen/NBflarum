@@ -78,5 +78,7 @@ return [
         ->attribute('opayaddress', function (UserSerializer $serializer, User $user) {
             return $user->opayaddress;
         }),
-	
+
+	(new Extend\Settings)
+      ->serializeToForum('nbflarum-minTip', 'nbflarum.minTip'),
 ];

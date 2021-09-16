@@ -1,12 +1,14 @@
-app.initializers.add('chen/nbdomain-login', () => {
+app.initializers.add('jeffchen-nbflarum', () => {
   console.log("hello admin")
   app.extensionData
-    .for('chen/nbdomain-login')
+    .for('jeffchen-nbflarum')
     .registerSetting(
       {
-        setting: 'nbflarum.accessKeyId',
-        label: 'accessKeyId',
-        type: 'text',
+        setting: 'nbflarum.minTip',
+        label: 'Minium Tip Amount',
+        type: 'number',
+        min:2,
+        placeholder:2
       },
     )
 });
