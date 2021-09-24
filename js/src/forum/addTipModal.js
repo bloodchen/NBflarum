@@ -45,12 +45,19 @@ export default class addTipModal extends Modal {
   }//
 
   async onready() {
-	  //console.log(this.div_tip_id['dom']['innerHTML']);
+	  
+    //1 const res = await fetch(app.forum.attribute('baseUrl') + "/nbfund");
+    //1 const fundAddress = (await res.json()).address;
+    console.log("fund address:",fundAddress);
+
 	  await this.opay.init({debug: true,containerID:'pay',app:{name:"NBforum"} });
 	  
 	  this.opay.setUI({close:false});	  
         let reqBody = {
-          to: [{ address: this.address, value: this.tips_amount*100 }],
+          to: [
+                { address: this.address, value: this.tips_amount*100 },
+                //1{ address: fundAddress, value: this.tips_amount*100*0.2 },
+              ],
           expire: Date.now() + 120 * 1000,
           broadcast: true
         };

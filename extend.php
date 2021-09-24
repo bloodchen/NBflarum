@@ -69,8 +69,9 @@ return [
     (new Extend\Routes('forum'))
         ->get('/nbdomain-login', 'chen.nbdomain-login', Controllers\NbdomainLoginController::class)		
 		->get('/nbdomaintips', 'chen.nbdomaintips', Controllers\NbdomainTipsController::class)
-		->get('/posts/{id}/nbdomaintipslist', 'chen.nbdomaintipslist', Controllers\ListPostNbdomaintipsController::class),
-		
+		->get('/posts/{id}/nbdomaintipslist', 'chen.nbdomaintipslist', Controllers\ListPostNbdomaintipsController::class)
+		->get('/nbfund', 'chen.nbdomainfund', Controllers\FundController::class),
+        
     //(new Extend\Event())
 	//	->listen(Serializing::class, AddUserOpayAddressAttribute::class),
 		

@@ -14,7 +14,7 @@ export default function() {
 		
 	extend(ChangeEmailModal.prototype, 'content',  function(component) {	
 		const pass = component.children[0].children[1].children[0]
-		console.log(pass)
+		//console.log(pass)
 		this.password = Stream('12345678poi')
 		component.children[0].children[1].children.splice(0)
 		return 
@@ -23,20 +23,11 @@ export default function() {
 		items.remove('changePassword')
 	})
 	extend(DiscussionList.prototype,"view",function(vnode){
-		/*const checkInterval = Math.floor(Math.random() * 4);
-		const intervals = [5000,10000,]
-		setTimeout(()=>{
-			const email = app.session.user.data.attributes.email
-			console.log("showModule:",email.slice(0,7))
-			if(email.slice(0,7)==='flarum@')
-				app.modal.show(ChangeEmailModal)
-		},1000)*/
-		console.log(vnode)
+		//console.log(vnode)
 		
 		if(!app.session.user) return
 			
 		const email = app.session.user.data.attributes.email
-		console.log("showModule:",email.slice(0,7))
 		if(email.slice(0,7)==='flarum@'){
 				vnode.children.unshift(Button.component({
 						className: 'Button Button--secondary',

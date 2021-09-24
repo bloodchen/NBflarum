@@ -11,6 +11,7 @@ import User from "flarum/models/User";
 //import addTipModal from './addTipModal';
 import addTipSection from './addTipSection';
 import changeEmailModal from './changeEmailModal'
+//1 import changeHeader from './changeHeader'
 
 
 app.initializers.add('jeffchen-nbflarum', () => {
@@ -19,6 +20,7 @@ app.initializers.add('jeffchen-nbflarum', () => {
 	
 	addTipSection();
 	changeEmailModal();
+	//1 changeHeader();
     extend(HeaderSecondary.prototype, 'items', replaceSignupButton);	
 	extend(LogInModal.prototype.onsubmit = function(e) { 
 		e.preventDefault(); 
