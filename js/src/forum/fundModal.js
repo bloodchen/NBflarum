@@ -102,11 +102,11 @@ export default class fundModal extends Modal {
 	          </div>
 	          <div className="Form-group">
 	          <ul style="padding-inline-start:10px;">
-	             	<li>fund address:<div id="fundAddress" /></li>
-	             	<li>next draw: <span id="time-next-draw" /></li>
-	             	<li><a href={this.helpurl}>rule</a></li>
+	             	<li>{app.translator.trans('chen-nbdomain-login.forum.fund_address')}:<div id="fundAddress" /></li>
+	             	<li>{app.translator.trans('chen-nbdomain-login.forum.next_draw')}: <span id="time-next-draw" /></li>
+	             	<li><a href={this.helpurl}>{app.translator.trans('chen-nbdomain-login.forum.rule')}</a></li>
 	             </ul>
-	            <h3>Eligible Users:</h3>
+	            <h3>{app.translator.trans('chen-nbdomain-login.forum.eligible_users')}:</h3>
 	            <div id="fundUserList"></div>
 	          </div>
 	          <div className="Form-group">

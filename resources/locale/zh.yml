@@ -7,4 +7,8 @@ chen-nbdomain-login:
         tip_cancel: 您取消了打赏
         email_reminder: 请更新邮箱设定
         fund: 社区基金
+        fund_address: 基金地址
+        next_draw: 下次分配
+        rule: 规则
+        eligible_users: 有资格用户
         

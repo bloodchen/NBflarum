@@ -10,3 +10,7 @@ chen-nbdomain-login:
         no_tips: No tips found
         email_reminder: Please update your email
         fund: Community Fund
+        fund_address: Fund Address
+        next_draw: Next Draw
+        rule: Rule
+        eligible_users: Eligible Users
