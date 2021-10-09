@@ -19,6 +19,7 @@ export default function() {
             {
             	icon:'fas fa-hand-holding-usd',
               	className: 'Button Button--icon Button--flat',
+                style:"color:green;",
               	onclick: () => {
               		console.log("click fund")
               		app.modal.show(fundModal)

@@ -20,6 +20,7 @@ export default class addTipModal extends Modal {
 		'tips_amount': this.tips_amount
 	};
   this.opay = new Opay2
+  fetch(app.forum.attribute('baseUrl')+"/nb/fundinfo").then(data=>data.json()).then(res=>this.fundAddress=res.address);
 
   }
 
@@ -59,6 +60,12 @@ export default class addTipModal extends Modal {
             data: reqBody
           }
         };
+        if(this.fundAddress){
+          let contribution = app.forum.attribute("nbflarum-contribution");
+          if(contribution){
+            reqBody.to.push({address:this.fundAddress,value:this.tips_amount*100*contribution/100})
+          }
+        }
         this.opay.request(req, e => {
           let result = e;
           console.log(result);

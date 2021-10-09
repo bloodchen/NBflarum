@@ -28,6 +28,7 @@ use Flarum\User\User;
 /*use Chen\NbdomainLogin\Controllers\NbdomaintipsController;
 use Chen\NbdomainLogin\Controllers\NbdomainLoginController;
 use Chen\NbdomainLogin\Controllers\ListPostNbdomaintipsController;*/
+use Chen\NbdomainLogin\Controllers\FundDraw;
 
 return [
     (new Extend\Frontend('forum'))
@@ -69,7 +70,10 @@ return [
     (new Extend\Routes('forum'))
         ->get('/nbdomain-login', 'chen.nbdomain-login', Controllers\NbdomainLoginController::class)		
 		->get('/nbdomaintips', 'chen.nbdomaintips', Controllers\NbdomainTipsController::class)
-		->get('/posts/{id}/nbdomaintipslist', 'chen.nbdomaintipslist', Controllers\ListPostNbdomaintipsController::class),
+		->get('/posts/{id}/nbdomaintipslist', 'chen.nbdomaintipslist', Controllers\ListPostNbdomaintipsController::class)
+        ->get('/tipsInfo','chen.tipsinfo', Controllers\TipsController::class)
+        ->get('/nb/funddraw', 'chen.nbfunddraw', Controllers\FundDraw::class)
+        ->get('/nb/fundinfo', 'chen.nbfundinfo', Controllers\FundController::class),
 		
     //(new Extend\Event())
 	//	->listen(Serializing::class, AddUserOpayAddressAttribute::class),
@@ -80,5 +84,7 @@ return [
         }),
 
 	(new Extend\Settings)
-      ->serializeToForum('nbflarum-minTip', 'nbflarum.minTip'),
+      ->serializeToForum('nbflarum-minTip', 'nbflarum.minTip')
+      ->serializeToForum('nbflarum-help', 'nbflarum.help')
+      ->serializeToForum('nbflarum-contribution', 'nbflarum.contribution'),
 ];

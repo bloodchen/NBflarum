@@ -8,13 +8,11 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
 use Chen\NbdomainLogin\Command\FundManager;
 
-class FundController implements RequestHandlerInterface
+class FundDraw implements RequestHandlerInterface
 {
     public function handle(Request $request): Response
     {
-        //$string = file_get_contents("../packages/nbflarum.json");
-        //$json_a = json_decode($string);
-        $address = FundManager::getAddress();
-        return new HtmlResponse('{"address":"'.$address.'"}');
+        FundManager::fundDraw();
+        return new HtmlResponse('ok');
     }
 }

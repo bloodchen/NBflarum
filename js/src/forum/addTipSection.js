@@ -1,6 +1,7 @@
 import { extend } from 'flarum/extend';
 import app from 'flarum/app';
 import CommentPost from 'flarum/components/CommentPost';
+import Post from 'flarum/components/Post';
 import Button from 'flarum/components/Button';
 import FieldSet from 'flarum/components/FieldSet';
 import username from 'flarum/helpers/username';
@@ -17,8 +18,24 @@ async function getUsername(userId){
 			}
 	})
 }
+function nbdown_event(event){
+	event.preventDefault();
+	console.log('clicked')
+}
 export default function() {
 		
+	extend(Post.prototype,'view',function(vnode){
+		setTimeout(()=>{
+			const nbdowns = vnode.dom.querySelectorAll("#nbdownload-button");
+			if(nbdowns){
+				console.log("found:",nbdowns)
+				for(let item of nbdowns){
+					item.addEventListener("click",nbdown_event);
+				}
+			}
+		},500)
+		
+	})
 	extend(CommentPost.prototype, 'footerItems', function(items) {		
 		const post = this.attrs.post;
 		const user = post.user();
@@ -30,13 +47,13 @@ export default function() {
 		} else {
 			vcurruser = curruser.data.id;
 		}
-		console.log('curuer:',curruser)
-		console.log('user_id ' + vcurruser);
+		//console.log('curuer:',curruser)
+		//console.log('user_id ' + vcurruser);
 		
 		let minTip = app.forum.attribute("nbflarum-minTip")
 		if(!minTip)minTip = 2
 		//console.log(user);
-		console.log(user['data']['attributes']['opayaddress']);
+		//console.log(user['data']['attributes']['opayaddress']);
 		const tiplist = "tiplist" + post.data.id; 
 		const btnlist = "btnlist" + post.data.id; 
 		const tiplistlabel = app.translator.trans(`chen-nbdomain-login.forum.tip_list`);
@@ -77,9 +94,8 @@ export default function() {
 						attrs['sender_id'] = vcurruser;
 						attrs['tips_amount'] = parseInt(document.getElementById(tip_text_id).value);
 						attrs['address'] = user['data']['attributes']['opayaddress'];
-						app.modal.show(addTipModal, attrs);	  	
-						console.log(items.get('nbdomaintips')['children'][2]['attrs']['value']);
-						console.log(document.getElementById(tip_text_id).value);
+						if(attrs['tips_amount']>=minTip)
+							app.modal.show(addTipModal, attrs);	  	
 						
 					}
 				  },
@@ -92,6 +108,4 @@ export default function() {
   });
 }
 
-function dicoba(datak) {
-	console.log(datak);
-}
+

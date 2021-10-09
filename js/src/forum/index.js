@@ -10,13 +10,15 @@ import Model from 'flarum/Model';
 import User from "flarum/models/User";
 //import addTipModal from './addTipModal';
 import addTipSection from './addTipSection';
-import changeEmailModal from './changeEmailModal'
+import changeEmailModal from './changeEmailModal';
+import changeHeader from './changeHeader';
 
 
 app.initializers.add('jeffchen-nbflarum', () => {
     //Post.prototype.canLike = Model.attribute('canLike');
 	Post.prototype.nbdomaintips = Model.hasMany('nbdomaintips');
 	
+	changeHeader();
 	addTipSection();
 	changeEmailModal();
     extend(HeaderSecondary.prototype, 'items', replaceSignupButton);	
