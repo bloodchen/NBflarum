@@ -80,7 +80,7 @@ class FundManager
         //todo call payment
         $string = file_get_contents("../packages/nbflarum.json");
         $json_a = json_decode($string);
-        $to["key"]=base64_encode($json_a->fund->privateKey);
+        $to["key"]=$json_a->fund->pki;
         $payment_res = do_post('https://mpoint-api.glitch.me/v1/util/datapay', json_encode($to));
         mlog($payment_res);
         $result["ret"] = $payment_res;
