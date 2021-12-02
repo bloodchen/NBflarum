@@ -28,4 +28,12 @@ app.initializers.add('jeffchen-nbflarum', () => {
         placeholder:"help URL"
       },
     )
+    .registerSetting(
+      {
+        setting: 'nbflarum.node',
+        label: 'NBnode URL(do not change if you do not understand)',
+        type: 'text',
+        placeholder: 'https://api.nbdomain.com/api/'
+      },
+    )
 });

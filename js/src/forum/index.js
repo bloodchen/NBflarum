@@ -41,7 +41,7 @@ app.initializers.add('jeffchen-nbflarum', () => {
             return;
         }
 
-        let signupUrl = "https://app.nbdomain.com/#/brand";
+        let signupUrl = "https://app.nbdomain.com/#/search";
         items.replace('signUp',
             <a href={signupUrl} target="_blank" className="Button Button--link">
                 {app.translator.trans('core.forum.header.sign_up_link')}
@@ -85,7 +85,7 @@ app.initializers.add('jeffchen-nbflarum', () => {
 		footer[0]['tag'] = 'div';
 		*/
 		footer[1]['children'][1]['attrs']['onclick'] = function () {
-			window.open("https://app.nbdomain.com/#/brand", "_blank");
+			window.open("https://app.nbdomain.com/#/search", "_blank");
 		};
 		delete footer[0]['children'][0]; //delete footer[1];				
 	});	

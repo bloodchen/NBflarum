@@ -33,7 +33,7 @@ use Chen\NbdomainLogin\Controllers\FundDraw;
 return [
     (new Extend\Frontend('forum'))
         ->content(function (Document $document) {
-            $document->head[] = '<script src="https://unpkg.com/opay2@1.0.8/opay2.min.js"></script>
+            $document->head[] = '<script src="https://unpkg.com/opay2@latest/opay2.min.js"></script>
 								 <script src="https://unpkg.com/nblib@latest/nblib.min.js" ></script>
 								 <style>td, th { padding: 1px; }</style>
 								 ';
@@ -86,5 +86,6 @@ return [
 	(new Extend\Settings)
       ->serializeToForum('nbflarum-minTip', 'nbflarum.minTip')
       ->serializeToForum('nbflarum-help', 'nbflarum.help')
+      ->serializeToForum('nbflarum-node', 'nbflarum.node')
       ->serializeToForum('nbflarum-contribution', 'nbflarum.contribution'),
 ];
