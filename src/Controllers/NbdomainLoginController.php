@@ -69,7 +69,7 @@ class NbdomainLoginController implements RequestHandlerInterface
 		$nbdomainname = Arr::get($queryParams, 'userid');
 		$data = Arr::get($queryParams, 'data');	// nickname
 		$sig = Arr::get($queryParams, 'sig');
-		$address = Arr::get($queryParams, 'address');	// avatar
+		$address = $nbdomainname;//Arr::get($queryParams, 'address');
 		$nickname = '';
 
 		/*$url = NBAPI."util/verify?domain=".$nbdomainname."&sig=".$sig."&data=".$data;

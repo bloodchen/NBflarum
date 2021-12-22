@@ -124,7 +124,7 @@ async function onLogin(){
 		const obj = ret;
 		if(obj.code==0){
 		  const sig = obj.body;
-		  console.log("data_hash:",hash," sig:",sig," pubKey:",pubKey);
+		  //console.log("data_hash:",hash," sig:",sig," pubKey:",pubKey);
 		  const verified = opay.verify(hash,sig,pubKey);
 		  //alert(verified);
 		  //if(elMsg){
